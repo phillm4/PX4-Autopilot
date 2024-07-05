@@ -150,6 +150,8 @@ void Ekf::fuseOptFlow(const bool update_terrain)
 	if (fused[0] && fused[1]) {
 		_aid_src_optical_flow.time_last_fuse = _time_delayed_us;
 		_aid_src_optical_flow.fused = true;
+
+		_time_last_hor_vel_fuse = _time_delayed_us;
 	}
 }
 
