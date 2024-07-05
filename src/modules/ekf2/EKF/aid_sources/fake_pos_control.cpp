@@ -68,12 +68,12 @@ void Ekf::controlFakePosFusion()
 		const float innov_gate = 3.f;
 
 		updateAidSourceStatus(aid_src,
-					 _time_delayed_us,
-					 position,                                           // observation
-					 obs_var,                                            // observation variance
-					 Vector2f(_state.pos) - position,                    // innovation
-					 Vector2f(getStateVariance<State::pos>()) + obs_var, // innovation variance
-					 innov_gate);                                        // innovation gate
+				      _time_delayed_us,
+				      position,                                           // observation
+				      obs_var,                                            // observation variance
+				      Vector2f(_state.pos) - position,                    // innovation
+				      Vector2f(getStateVariance<State::pos>()) + obs_var, // innovation variance
+				      innov_gate);                                        // innovation gate
 
 		const bool continuing_conditions_passing = !isHorizontalAidingActive()
 				&& ((getTiltVariance() > sq(math::radians(3.f))) || _control_status.flags.vehicle_at_rest)

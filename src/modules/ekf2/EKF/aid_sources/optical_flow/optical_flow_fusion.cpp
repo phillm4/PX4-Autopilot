@@ -71,12 +71,12 @@ void Ekf::updateOptFlow(estimator_aid_source2d_s &aid_src)
 
 	// run the innovation consistency check and record result
 	updateAidSourceStatus(aid_src,
-		_flow_sample_delayed.time_us,  // sample timestamp
-		opt_flow_rate,                 // observation
-		Vector2f{R_LOS, R_LOS},        // observation variance
-		innovation,                    // innovation
-		innov_var,                     // innovation variance
-		math::max(_params.flow_innov_gate, 1.f));      // innovation gate
+			      _flow_sample_delayed.time_us,  // sample timestamp
+			      opt_flow_rate,                 // observation
+			      Vector2f{R_LOS, R_LOS},        // observation variance
+			      innovation,                    // innovation
+			      innov_var,                     // innovation variance
+			      math::max(_params.flow_innov_gate, 1.f));      // innovation gate
 }
 
 void Ekf::fuseOptFlow(const bool update_terrain)
@@ -139,7 +139,8 @@ void Ekf::fuseOptFlow(const bool update_terrain)
 			Kfusion(State::terrain.idx) = 0.f;
 		}
 
-		if (measurementUpdate(Kfusion, H, _aid_src_optical_flow.observation_variance[index], _aid_src_optical_flow.innovation[index])) {
+		if (measurementUpdate(Kfusion, H, _aid_src_optical_flow.observation_variance[index],
+				      _aid_src_optical_flow.innovation[index])) {
 			fused[index] = true;
 		}
 	}
