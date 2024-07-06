@@ -566,9 +566,7 @@ int run_startup_script(const std::string &commands_file, const std::string &abso
 		ret = system(shell_command.c_str());
 
 		if (ret == 0) {
-			PX4_INFO("mp - Startup script returned successfully");
-			PX4_INFO("mp - wooooo2");
-
+			PX4_INFO("Startup script returned successfully");
 		} else {
 			PX4_ERR("Startup script returned with return value: %d", ret);
 		}
